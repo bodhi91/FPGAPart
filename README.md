@@ -1,5 +1,7 @@
 # A Partitioning-Based CAD Flow for Interposer-Based Multi-Die FPGAs
 
+This repository exists for the sole purpose of a double-blind review for FCCM'25. 
+
 `FPGAPart` adopts the multilevel partitioning paradigm inspired by `TritonPart`. This flow consists of three main phases:
 
 ## 1. Multilevel Clustering
@@ -27,5 +29,26 @@ The overall FPGAPart framework is illustrated below:
 ## Flow Overview
 The overall FPGAPart-based flow is illustrated below:
 ![Overall Flow](https://github.com/bodhi91/FPGAPart/blob/main/vtr_flow_fccm.png)
+
+## Running instructions 
+```bash
+# Step 1: Download OpenROAD
+# Step 2: Clone the OpenROAD repository
+$ git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD.git
+
+# Step 3: Copy contents of FPGAPart to OpenROAD/src/par/
+# (Ensure you adjust paths appropriately)
+
+# Step 4: Create a build directory and navigate into it
+$ mkdir build && cd build
+
+# Step 5: Run cmake
+$ cmake ..
+
+# Step 6: Build the project
+$ make -j
+
+# Step 7: Run any of the scripts (update directory path variables in scripts before running)
+```
 
 ---
