@@ -30,7 +30,9 @@ The overall FPGAPart framework is illustrated below:
 The overall FPGAPart-based flow is illustrated below:
 ![Overall Flow](https://github.com/bodhi91/FPGAPart/blob/main/vtr_flow_fccm.png)
 
-## Running instructions 
+## Running Instructions 
+Follow these steps to set up and run FPGAPart:
+
 ```bash
 # Step 1: Download OpenROAD
 # Step 2: Clone the OpenROAD repository
@@ -48,7 +50,75 @@ $ cmake ..
 # Step 6: Build the project
 $ make -j
 
-# Step 7: Run any of the scripts (update directory path variables in scripts before running)
+# Step 7: Clone VTR 7.0 interposer branch
+$ git clone --branch interposer https://github.com/verilog-to-routing/vtr-verilog-to-routing.git
+
+# Step 8: Copy all contents of vtr_7_0 to vtr-verilog-to-routing/vpr/SRC/
+
+# Step 9: Run any of the scripts in the `run_scripts` directory
+# (Update path variables in the scripts before running)
 ```
 
+## Example Run
+Below is an example output from running the FPGAPart flow:
+
+```
+OpenROAD v2.0-16943-gf2c7a7f 
+Features included (+) or not (-): +Charts +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO] Hypergraph file : logical_hypergraph_tpart.txt
+[INFO] Timing file : logical.top_n_paths
+[STATUS] Read 1000 timing paths from file
+[INFO] Total prepacked clusters : 193
+[DEBUG PAR-multilevel_partitioning] Starting multilevel partitioning.
+[DEBUG PAR-multilevel_partitioning] no base balance is specified. Use default value.
+[DEBUG PAR-multilevel_partitioning] no scale factor is specified. Use default value.
+[DEBUG PAR-multilevel_partitioning] No vertex weighting is specified. Use default value of 1.
+[DEBUG PAR-multilevel_partitioning] No placement weighting is specified. Use default value of 1.
+
+Multilevel Partitioning Parameters:
+
+hyperedge weight factor : [ 1.000000  ]
+vertex weight factor : [ 1.000000 1.000000 1.000000 1.000000 1.000000  ]
+placement weight factor : [ 1.000000 1.000000  ]
+
+net_timing_factor : 1.0
+path_timing_factor : 1.0
+path_snaking_factor : 1.0
+timing_exp_factor : 2.0
+
+coarsen order : RANDOM
+thr_coarsen_hyperedge_size_skip : 200
+thr_coarsen_vertices : 10
+thr_coarsen_hyperedges : 50
+coarsening_ratio : 1.6
+max_coarsen_iters : 30
+adj_diff_ratio : 0.0001
+min_num_vertices_each_part : 4
+
+num_initial_solutions : 50
+num_best_initial_solutions : 10
+
+refine_iters : 10
+max_moves (FM or greedy refinement) : 60
+early_stop_ratio : 0.5
+total_corking_passes : 25
+v_cycle_flag : true
+max_num_vcycle : 1
+num_coarsen_solutions : 3
+num_vertices_threshold_ilp : 50
+
+[INFO] Running FP-Growth with min_support = 10
+[DEBUG PAR-coarsening] Running FC Multilevel Coarsening...
+[DEBUG PAR-coarsening] Level 0 :: num_vertices = 472, num_hyperedges = 678, num_timing_paths = 354
+[DEBUG PAR-coarsening] Level 1 :: num_vertices = 295, num_hyperedges = 497, num_timing_paths = 290
+[DEBUG PAR-coarsening] Level 2 :: num_vertices = 184, num_hyperedges = 314, num_timing_paths = 199
+[DEBUG PAR-coarsening] Level 3 :: num_vertices = 115, num_hyperedges = 179, num_timing_paths = 114
+[DEBUG PAR-coarsening] Level 4 :: num_vertices = 90, num_hyperedges = 110, num_timing_paths = 47
+[DEBUG PAR-coarsening] Level 5 :: num_vertices = 87, num_hyperedges = 103, num_timing_paths = 43
+[DEBUG PAR-coarsening] Hierarchical coarsening time 0.014511137 seconds
+...
+[DEBUG PAR-multilevel_partitioning] The runtime of multilevel partitioner : 9.185599043 seconds
+```
 ---
