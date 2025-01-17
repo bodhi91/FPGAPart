@@ -22,7 +22,6 @@ The overall flow is illustrated below:
 
 ---
 
-Feel free to explore the repository for more details on implementation and examples.
 
 
 
